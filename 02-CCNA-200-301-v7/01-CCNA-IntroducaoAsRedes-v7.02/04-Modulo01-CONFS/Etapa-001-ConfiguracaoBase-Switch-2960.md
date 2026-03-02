@@ -9,7 +9,7 @@
 #Data de criação: 02/03/2026<br>
 #Data de atualização: 02/03/2026<br>
 #Versão: 0.12<br>
-#Testado e homologado no Cisco Packet Tracer 9.0.x x64
+#Testado e homologado no Cisco Packet Tracer 9.0.x x64 no Microsoft Windows ou GNU/Linux
 
 Conteúdo estudado nessa configuração:<br>
 #01_ PRIMEIRA ETAPA: Acessando o Modo EXEC de Comandos de Usuário no Cisco IOS<br>
@@ -31,7 +31,7 @@ Em geral, os comandos EXEC de Usuário permitem que você se conecte a dispositi
 
 O modo EXEC do Cisco IOS é dividido em: **02 (dois) níveis** de acesso: __`Usuário (> símbolo de Maior) e Privilegiado (# símbolo de Sustenido/Hashtag)`__
 
-**OBSERVAÇÃO-01:** sempre que você acessar o modo EXEC pela primeira vez no Switch ou Router será mostrado o nome (hostname) padrão dos equipamentos: **Switch = Switch> e Router = Router>**.
+> **OBSERVAÇÃO-01:** sempre que você acessar o modo EXEC pela primeira vez no Switch ou Router será mostrado o nome (hostname) padrão dos equipamentos: **Switch = Switch> e Router = Router>**.
 
 ```bash
 Switch>
@@ -124,12 +124,12 @@ Switch(config)#
 
 01. Configuração do: __`Nome (hostname)`__ do Switch (configuração principal do equipamento).
 
-**OBSERVAÇÃO-02:** essa configuração é obrigatória para o serviço de __`Acesso Remoto SSH (Secure Shell)`__ e demais serviços de rede que utiliza nomes para o seu acesso.
+> **OBSERVAÇÃO-02:** essa configuração é obrigatória para o serviço de __`Acesso Remoto SSH (Secure Shell)`__ e demais serviços de rede que utiliza nomes para o seu acesso.
 
 **DICA-06:** utilizar nomes curtos e objetivos, não usar caracteres especiais, espaço, acentuação, nomes complexo, etc.
 
 ```bash
-!Configuração do Hotname do Switch Cisco
+!Configuração do Hostname do Switch Cisco
 Switch(config)# hostname sw-01
 sw-01(config)#
 ```
@@ -139,7 +139,7 @@ sw-01(config)#
 
 **DICA-07:** senhas do **Tipo-7** por padrão não são criptografadas no Cisco IOS (serviço está desabilitado por padrão no Cisco IOS sendo necessário habilitar para criptografar as senhas, caso você não habilite o serviço as senhas serão mostradas em **Texto Plano** no comando: __`show running-config`__).
 
-**OBSERVAÇÃO-03:** senhas do **Tipo-7** são fáceis de serem quebradas e não são mais usadas nos equipamentos da Cisco, nesse caso é recomendado utilizar senhas do **Tipo-5 Secret.**
+> **OBSERVAÇÃO-03:** senhas do **Tipo-7** são fáceis de serem quebradas e não são mais usadas nos equipamentos da Cisco, nesse caso é recomendado utilizar senhas do **Tipo-5 Secret.**
 
 **DESAFIO-01:** site para quebrar senhas do Tipo-7 https://packetlife.net/toolbox/type7/
 
@@ -195,7 +195,7 @@ sw-01(config)# no ip domain-lookup
 
 **DESAFIO-02:** pesquisar na Internet **Imagens ASCII Art Cisco** para colocar no Banner MOTD. Site indicado para essa configuração: http://ascii-art.de/ascii/
 
-**OBSERVAÇÃO-04:** imagens ASCII Art no Banner **não pode ser muito grande**, recomendado ser **<= 1024 pixels**
+> **OBSERVAÇÃO-04:** imagens ASCII Art no Banner **não pode ser muito grande**, recomendado ser **<= 1024 pixels**
 
 **CUIDADO:** utilizar o mesmo __`Sinal de Delimitador de Início e Fim`__ do Banner na imagem ASCII (# Sustenido/Hashtag) ou outro carácter que não apareça na imagem.
 
@@ -209,7 +209,7 @@ sw-01(config)# banner motd #AVISO: acesso autorizado somente a funcionarios#
 
 **DICA-15:** senhas do **Tipo-5** por padrão utiliza __`Criptografia Forte (Algorítimo MD5)`__ e não precisa do **Serviço de Criptografia de Senha** habilitado para funcionar.
 
-**OBSERVAÇÃO-05:** por padrão o acesso ao __`modo EXEC Privilegiado`__ é liberado sem segurança, é recomendado sempre habilitar o recurso de segurança para acessar o **Modo EXEC Privilegiado e o Modo de Configuração Global**.
+> **OBSERVAÇÃO-05:** por padrão o acesso ao __`modo EXEC Privilegiado`__ é liberado sem segurança, é recomendado sempre habilitar o recurso de segurança para acessar o **Modo EXEC Privilegiado e o Modo de Configuração Global**.
 
 ```bash
 !Configurando a senha do comando enable do Switch Cisco
@@ -234,7 +234,7 @@ sw-01(config)# enable secret SUA_SENHA_SEGURA
 
 **DICA-19:** usuários com __`Privilégio 15`__ não precisa digitar o comando: **enable** após se logar no Switch ou Router.
 
-**OBSERVAÇÃO-06:** criação de usuários comuns para administrar o Switch, privilégio padrão recomendado: 1.
+> **OBSERVAÇÃO-06:** criação de usuários comuns para administrar o Switch, privilégio padrão recomendado: **1**.
 
 ```bash
 !Criação dos usuários locais do Switch Cisco
@@ -248,9 +248,9 @@ sw-01(config)# username SEU_USUÁRIO_3 privilege 15 secret SUA_SENHA_SEGURA
 
 01. Acessando a Linha (line) Console (Command Line Interface), porta padrão de acesso *Out-of-Band (Fora da Banda)* do Switch Cisco.
 
-**DICA-21:** conexão feita utilizando o __`Cabo Console RS232/DB9 ou USB`__ e software de Acesso Remoto ao Console (PuTTY, Minicom, etc...).
+**DICA-20:** conexão feita utilizando o __`Cabo Console RS232/DB9 ou USB`__ e software de Acesso Remoto ao Console (PuTTY, Minicom, etc...).
 
-**DICA-22:** nos Switch Cisco Catalyst temos apenas: **01 (uma) Porta Console RS232/DB9 ou USB** (novos modelos).
+**DICA-21:** nos Switch Cisco Catalyst temos apenas: **01 (uma) Porta Console RS232/DB9 ou USB** (novos modelos).
 
 ```bash
 !Acessando o modo de configuração do Console do Switch Cisco
@@ -259,21 +259,21 @@ sw-01(config)# line console 0
 ---
   - Forçando fazer login local utilizando os usuários e senhas locais criados no Switch.
 
-**DICA-23:** por padrão a configuração da __`Linha Console`__ é permitir o acesso físico sem autenticação.
+**DICA-22:** por padrão a configuração da __`Linha Console`__ é permitir o acesso físico sem autenticação.
 
 ```bash
-!Configuração a autenticação local do Switch Cisco
+!Configuração da autenticação local do Switch Cisco
 sw-01(config-line)# login local
 ```
 ---
 
   - Habilitando a senha de acesso do Tipo-7 Password (senha fraca).
 
-**DICA-24:** na porta console não temos a opção de criar __`Senhas do Tipo-5`__ (forte) somente Tipo-7 (fraca)
+**DICA-23:** na porta console não temos a opção de criar __`Senhas do Tipo-5`__ (forte) somente Tipo-7 (fraca)
 
-**OBSERVAÇÃO-09:** a porta console é considerada uma porta/interface física não remota ou virtual, por esse motivo ela não tem suporte a senhas do **Tipo-5 Secret**, devido o acesso ser feito fisicamente no Switch ou Router (se você tem a possibilidade de acessar fisicamente um equipamento, o nível de segurança da criptografia não importa mais, isso é considerado uma invasão física e não lógica).
+> **OBSERVAÇÃO-07:** a porta console é considerada uma porta/interface física não remota ou virtual, por esse motivo ela não tem suporte a senhas do **Tipo-5 Secret**, devido o acesso ser feito fisicamente no Switch ou Router (se você tem a possibilidade de acessar fisicamente um equipamento, o nível de segurança da criptografia não importa mais, isso é considerado uma invasão física e não lógica).
 
-**OBSERVAÇÃO-10:** essa configuração só será utilizada caso não exista __`usuários locais criados`__ e se a opção do comando: **login local** não for configurada, nesse caso se utiliza somente a opção do comando: **login**.
+> **OBSERVAÇÃO-08:** essa configuração só será utilizada caso não exista __`usuários locais criados`__ e se a opção do comando: **login local** não for configurada, nesse caso se utiliza somente a opção do comando: **login**.
 
 ```bash
 !Configuração da senha de acesso ao Console do Switch Cisco
@@ -283,9 +283,9 @@ sw-01(config-line)# password SUA_SENHA_NÃO_SEGURA
 
   - Habilitando o sincronismo das mensagens de Logs na tela da linha de console do Cisco IOS.
 
-**DICA-25:** esse recurso ajuda bastante no dia-a-dia em administrar o Cisco IOS, por padrão todas as mensagens de Log tem sua saída padrão na tela, muitas vezes isso atrapalha na digitação, esse recurso permite o sincronismos entre as mensagens e a digitação dos comandos.
+**DICA-24:** esse recurso ajuda bastante no dia-a-dia em administrar o Cisco IOS, por padrão todas as mensagens de Log tem sua saída padrão na tela, muitas vezes isso atrapalha na digitação, esse recurso permite o sincronismos entre as mensagens e a digitação dos comandos.
 
-**OBSERVAÇÃO-11:** por padrão todas as __`Mensagens de Status ou Logs`__ do Switch são mostradas na tela.
+> **OBSERVAÇÃO-09:** por padrão todas as __`Mensagens de Status ou Logs`__ do Switch são mostradas na tela.
 
 ```bash
 !Configuração do Sincronismo dos Logs do Switch Cisco
@@ -295,9 +295,9 @@ sw-01(config-line)# logging synchronous
 
   - Habilitando o tempo de inatividade do uso da linha console do Cisco IOS.
 
-**DICA-26:** configuração do tempo de inatividade em __`Minutos e Segundos`__ da linha console, utilizado principalmente quando você está conectado no console e não está mais interagindo nas configurações, após o tempo de inatividade a seção será finalizada (logoff/logout), garantindo assim a segurança do acesso aos equipamentos.
+**DICA-25:** configuração do tempo de inatividade em __`Minutos e Segundos`__ da linha console, utilizado principalmente quando você está conectado no console e não está mais interagindo nas configurações, após o tempo de inatividade a seção será finalizada (logoff/logout), garantindo assim a segurança do acesso aos equipamentos.
 
-**OBSERVAÇÃO-12:** não é recomendado deixar o tempo de inatividade **Muito Curto e nem Muito Longo**.
+> **OBSERVAÇÃO-10:** não é recomendado deixar o tempo de inatividade **Muito Curto e nem Muito Longo**.
 
 ```bash
 !Configuração do tempo de inatividade do Console do Switch Cisco
@@ -307,11 +307,11 @@ sw-01(config-line)# exec-timeout 5 30
 
   - Saindo de todos os níveis e voltando para o modo EXEC Privilegiado.
 
-**DICA-27:** você pode utilizar a tecla de atalho: __`Ctrl + Z`__ para sair de todos os níveis;
+**DICA-26:** você pode utilizar a tecla de atalho: __`Ctrl + Z`__ para sair de todos os níveis;
 
-**DICA-28:** o comando: **exit** sai nível por nível, o comando: **end** sai de todos os níveis.
+**DICA-27:** o comando: **exit** sai nível por nível, o comando: **end** sai de todos os níveis.
 
-**OBSERVAÇÃO-13:** os dois comandos são utilizados principalmente em scripts de automação.
+> **OBSERVAÇÃO-11:** os dois comandos são utilizados principalmente em scripts de automação.
 
 ```bash
 !Saindo de todos os níveis do Switch Cisco
@@ -323,9 +323,9 @@ sw-01(config-line)# end
 
 01. Salvando as configurações da __`Memória RAM (Running-Config)`__ para a __`Memória NVRAM (Startup-Config)`__.
 
-**DICA-29:** no Cisco IOS temos vários tipos de memórias: __`RAM (Random Access Memory), NVRAM (Non-Volatile Random Access Memory), Flash EEPROM (Electrically-Erasable Programmable Read-Only Memory), etc`__.
+**DICA-28:** no Cisco IOS temos vários tipos de memórias: __`RAM (Random Access Memory), NVRAM (Non-Volatile Random Access Memory), Flash EEPROM (Electrically-Erasable Programmable Read-Only Memory), etc`__.
 
-**DICA-30:** você pode utilizar o comando: **write**, indicado para criação de scripts e considerado obsoleto pela Cisco para salvar as configurações da RAM (running-config) para a NVRAM (startup-config).
+**DICA-29:** você pode utilizar o comando: **write**, indicado para criação de scripts e considerado obsoleto pela Cisco para salvar as configurações da RAM (running-config) para a NVRAM (startup-config).
 
 ```bash
 !Salvando as configurações da RAM para NVRAM do Switch Cisco
@@ -341,7 +341,7 @@ sw-01#
 
 01. Visualizando as configurações da memória RAM (Running-Config).
 
-**DICA-31:** no Cisco IOS temos várias opções de visualizações das configurações utilizando o comando: **show**, o principal comando utilizado em todos os equipamentos da Cisco para verificar as configurações que estão rodando no momento é o: __`show running-config`__ (configuração que está rodando na Memória RAM).
+**DICA-30:** no Cisco IOS temos várias opções de visualizações das configurações utilizando o comando: **show**, o principal comando utilizado em todos os equipamentos da Cisco para verificar as configurações que estão rodando no momento é o: __`show running-config`__ (configuração que está rodando na Memória RAM).
 
 ```bash
 !Visualizando as configurações de Memória RAM
@@ -357,7 +357,7 @@ sw-01#
 ```
 ---
 
-**DICA-32:** no Cisco IOS permite filtrar a saída dos comandos **show** usando __`Pipes (|)`__ com opções como: **include (incluir/mostrar), exclude (excluir/ocultar), begin (início/primeira linha) e section (sessão)**. Esses filtros ajudam a encontrar rapidamente partes específicas da configuração, sem precisar rolar todo o arquivo.
+**DICA-31:** no Cisco IOS permite filtrar a saída dos comandos **show** usando __`Pipes (|)`__ com opções como: **include (incluir/mostrar), exclude (excluir/ocultar), begin (início/primeira linha) e section (sessão)**. Esses filtros ajudam a encontrar rapidamente partes específicas da configuração, sem precisar rolar todo o arquivo.
 
 ```bash
 !Fazendo um Filtro na Visualização do Running-Config somente da Sessão Console 0
@@ -449,11 +449,11 @@ sw-01(config)#
 
 01. Utilizando o Visual Studio Code (VSCode) para automatizar as configurações do Cisco IOS.
 
-**OBSERVAÇÃO-14:** recomendo sempre utilizar um __`Editor de Texto Profissional`__ para criar os scripts e automatizar as tarefas de configuração do Cisco IOS, hoje em dia é indicado utilizar o Visual Studio Code (VSCode) junto com as Extensões: **Cisco IOS Syntax e Cisco Config Highlight** para facilitar essa configuração.
+> **OBSERVAÇÃO-12:** recomendo sempre utilizar um __`Editor de Texto Profissional`__ para criar os scripts e automatizar as tarefas de configuração do Cisco IOS, hoje em dia é indicado utilizar o Visual Studio Code (VSCode) junto com as Extensões: **Cisco IOS Syntax e Cisco Config Highlight** para facilitar essa configuração.
 
-**DICA-33:** o caractere: *! (exclamação)* é utilizado como um recurso de *Comentário*, sua utilização server para comentar o código de automação do Cisco IOS ou para desativar um comando para não ser executado, *RECOMENDO FORTEMENTE DOCUMENTAR TODOS OS COMANDOS E PROCEDIMENTOS DE CONFIGURAÇÃO PARA FACILITAR O ENTENDIMENTO.*
+**DICA-32:** o caractere: *! (exclamação)* é utilizado como um recurso de *Comentário*, sua utilização server para comentar o código de automação do Cisco IOS ou para desativar um comando para não ser executado, *RECOMENDO FORTEMENTE DOCUMENTAR TODOS OS COMANDOS E PROCEDIMENTOS DE CONFIGURAÇÃO PARA FACILITAR O ENTENDIMENTO.*
 
-**DICA-34:** para facilitar a leitura do código, recomendo utilizar o recurso de **Indentação de Código** usando a Tecla TAB (Tabulador/Tabulação) para cada nível que você está configurando o Cisco IOS, isso facilitada a análise de erros (Debug) do código.
+**DICA-33:** para facilitar a leitura do código, recomendo utilizar o recurso de **Indentação de Código** usando a Tecla TAB (Tabulador/Tabulação) para cada nível que você está configurando o Cisco IOS, isso facilitada a análise de erros (Debug) do código.
 
 ```python
 !Automação da configuração do Switch 2

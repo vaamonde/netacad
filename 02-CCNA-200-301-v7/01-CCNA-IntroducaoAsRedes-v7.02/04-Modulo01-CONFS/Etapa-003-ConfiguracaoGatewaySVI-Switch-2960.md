@@ -6,11 +6,10 @@
 #Facebook Bora para Prática: https://www.facebook.com/BoraParaPratica<br>
 #Instagram Procedimentos em TI: https://www.instagram.com/procedimentoem<br>
 #YouTUBE Bora Para Prática: https://www.youtube.com/boraparapratica<br>
-#Data de criação: 16/09/2024<br>
-#Data de atualização: 22/05/2025<br>
-#Versão: 0.09<br>
-#Testado e homologado no Linux Mint 22 Wilma x64<br>
-#Testado e homologado o Cisco Packet Tracer 8.2.x x64 e Rack Cisco SW-3560 e RT-2911
+#Data de criação: 02/03/2026<br>
+#Data de atualização: 02/03/2026<br>
+#Versão: 0.12<br>
+#Testado e homologado no Cisco Packet Tracer 9.0.x x64 no Microsoft Windows ou GNU/Linux
 
 Conteúdo estudado nessa configuração:<br>
 #01_ PRIMEIRA ETAPA: Acessando o Modo de Configuração Global do Switch Cisco Catalyst 2960.<br>
@@ -18,32 +17,15 @@ Conteúdo estudado nessa configuração:<br>
 #03_ TERCEIRA ETAPA: Configuração da Interface SVI no Cisco IOS.<br>
 #04_ QUARTA ETAPA: Automatizando a Configuração do Segundo Switch Cisco Catalyst 2960.<br>
 
-**OBSERVAÇÃO IMPORTANTE:** COMENTAR NO VÍDEO DO CONFIGURAÇÃO DO CISCO PACKET TRACER SE VOCÊ CONSEGUIU FAZER A CONFIGURAÇÃO COM A SEGUINTE FRASE: *Configuração SVI Switch 2960 do Cisco Packet Tracer realizado com sucesso!!! #BoraParaPrática*
-
-#boraparapratica #boraparaprática #vaamonde #robsonvaamonde #procedimentosemti #cisco #infracisco #desafiovaamonde #desafioboraparapratica #desafiocisco #desafioinfracisco
-
-## INFORMAÇÕES IMPORTANTES SOBRE ESSA DOCUMENTAÇÃO:
-
-A) **ACRÉSCIMO:** informações ou comandos que não estava no script original e nem comentado no vídeo, algo importante para o cenário ou dicas de alunos;<br>
-B) **DESAFIO:** desafio proposto para o aluno, com o objetivo de estimular o raciocínio lógico para a resolução de problemas de rede ou mudanças nas configurações;<br>
-C) **DICA:** informações importantes da tecnologia ou da prova de certificação, dica para configurar ou lembrar os recursos para sua configuração no exame;<br>
-D) **ERRATA:** correções dos scripts, correções de falas, correções de configurações, etc...;<br>
-E) **EXEMPLO:** exemplos de comandos ou configurações das opções de DICAS ou OBSERVAÇÃO;<br>
-F) **IMPORTANTE:** informações importantes da tecnologia ou da configuração, com foco em adicionar informações detalhadas da tecnologia ou da certificação;<br>
-G) **OBSERVAÇÃO:** informações relevantes da tecnologia ou da configuração, com foco em adicionar informações extras da tecnologia ou da certificação.
-
-[![Config SVI 2960](http://img.youtube.com/vi/ueh8gp37RG8/0.jpg)](https://www.youtube.com/watch?v=ueh8gp37RG8 "Config SVI 2960")
-
-Link da vídeo aula: https://www.youtube.com/watch?v=ueh8gp37RG8
-
 ## PRIMEIRA ETAPA: Acessando o Modo de Configuração Global do Switch Cisco Catalyst 2960.
 
 01. Acessando o modo EXEC Privilegiado e o modo de Configuração Global de Comandos.
+
 ```bash
 AVISO: acesso autorizado somente a funcionarios
 User Access Verification
 Username: SEU_USUÁRIO
-Password: SUA_SENHA
+Password: SUA_SENHA_SEGURA
 
 sw-01> enable
 Password: SUA_SENHA_SEGURA
@@ -51,84 +33,105 @@ Password: SUA_SENHA_SEGURA
 sw-01# configure terminal
 sw-01(config)#
 ```
+---
 
 ## SEGUNDA ETAPA: Configuração do Gateway padrão IPv4 no Cisco IOS.
 
 01. Configuração do Gateway Padrão IPv4 no Switch para Acesso Remoto.
 
-**DICA-01:** configuração do Gateway IPv4 em Switch Cisco Catalyst Layer 2 serve somente para acesso remoto com finalidade de monitoramento/gerenciamento do Switch;
+**DICA-01:** configuração do __`Gateway IPv4`__ em Switch Cisco Catalyst Layer 2 serve somente para **Acesso Remoto** com finalidade de monitoramento/gerenciamento do Switch;
 
-**DICA-02:** em Switch Cisco Catalyst Layer 3 o recurso de Gateway é utilizado tanto para acesso remoto ou para roteamento de Redes/Sub-Redes utilizando principalmente VLAN (Virtual-LAN) ou Protocolos de Roteamento IGP (Interior Gateway Protocols) como o: RIP (Routing Information Protocol), EIGRP (Enhanced Interior Gateway Routing Protocol), OSPF (Open Shortest Path First), Rota Estática, etc...
+**DICA-02:** em Switch Cisco Catalyst Layer 3 o recurso de __`Gateway`__ é utilizado tanto para **Acesso Remoto ou para Roteamento de Redes/Sub-Redes** utilizando principalmente __`VLAN (Virtual-LAN)`__ ou Protocolos de Roteamento **IGP** (Interior Gateway Protocols) como o: __`RIP (Routing Information Protocol), EIGRP (Enhanced Interior Gateway Routing Protocol), OSPF (Open Shortest Path First), Rota Estática, etc.`__
 
-**OBSERVAÇÃO-01:** esse recurso é necessário para administração remota ou monitoramento do Switch Cisco Catalyst Layer 2 ou Layer 3.
+> **OBSERVAÇÃO-01:** esse recurso é necessário para **Administração Remota ou Monitoramento** do Switch Cisco Catalyst Layer 2 ou Layer 3.
 
-**OBSERVAÇÃO-02:** existe a possibilidade da configuração do Gateway utilizar o endereço IPv6 em Switch Cisco Catalyst Layer 2 ou Layer 3, para essa configuração é recomendo utilizar o Cisco IOS na versão mínima 15.x (versão padrão no Cisco Packet Tracer 8.2.2 - v15.0.-2-SE4 que já tem suporte ao IPv6).
+> **OBSERVAÇÃO-02:** existe a possibilidade da configuração do __`Gateway utilizar o endereço IPv6`__ em Switch Cisco Catalyst Layer 2 ou Layer 3, para essa configuração é recomendo utilizar o Cisco IOS na versão mínima DE: **15.x (versão padrão no Cisco Packet Tracer 8.2.2 - v15.0.-2-SE4 que já tem suporte ao IPv6).**
+
 ```bash
+!Configurando o Gateway Padrão do Switch Cisco
 sw-01(config)# ip default-gateway 192.168.1.254
 ```
+---
 
 ## TERCEIRA ETAPA: Configuração da Interface SVI no Cisco IOS.
 
 01. Configuração da Interface Virtual do Switch SVI (Switch Virtual Interface).
 
-**DICA-03:** interfaces virtuais são criadas utilizando o recurso de VLAN (Virtual-LAN) disponível nos Switch Cisco Catalyst Layer 2 ou Layer 3.
+**DICA-03:** interfaces virtuais são criadas utilizando o recurso de __`VLAN (Virtual-LAN)`__ disponível nos Switch Cisco Catalyst Layer 2 ou Layer 3.
 
-**DICA-04:** é recomendado utilizar outra VLAN para o SVI, não é recomendado utilizar a VLAN padrão 1 para essa finalidade, a VLAN 1 (VLAN Default) existe em todos os Switch e é por causa disso que Switches de Fabricantes Diferente se comunicam entre si, todos utilizam sempre a VLAN 1 como padrão para a comunicação.
+**DICA-04:** é recomendado utilizar **Outra VLAN para o SVI**, não é recomendado utilizar a __`VLAN Padrão 1`__ para essa finalidade, a **VLAN 1 (VLAN Default)** existe em todos os Switch e é por causa disso que Switches de Fabricantes Diferente se comunicam entre si, todos utilizam sempre a VLAN 1 como padrão para a comunicação.
 
-**OBSERVAÇÃO-03:** em Switch Cisco Catalyst Layer 2 utilizamos o SVI somente para administração remota ou monitoramento do equipamento, ela não será utilizada para Gateway da Rede Local ou para integração com Protocolos de Roteamento.
+> **OBSERVAÇÃO-03:** em Switch Cisco Catalyst Layer 2 utilizamos o SVI somente para __`Administração Remota ou Monitoramento do Equipamento`__, ela não será utilizada para **Gateway da Rede Local** ou para integração com **Protocolos de Roteamento**.
 
-**OBSERVAÇÃO-04:** o SVI é necessário para o acesso remoto nas Linhas Virtuais (VTY) utilizando os protocolos Telnet, SSH ou outro protocolo configurado, após a configuração da SVI o Switch irá possuir um Endereço Físico (MAC Address) associado a um Endereço Lógico de Rede (IPv4 ou IPv6) permitindo o seu acesso remoto.
+> **OBSERVAÇÃO-04:** o SVI é necessário para o __`Acesso Remoto nas Linhas Virtuais (VTY)`__ utilizando os protocolos: **Telnet, SSH** ou outro protocolo configurado, após a configuração da SVI o Switch irá possuir um __`Endereço Físico (MAC Address)`__ associado a um __`Endereço Lógico de Rede (IPv4 ou IPv6)`__ permitindo o seu acesso remoto.
+
 ```bash
+!Acessando a Interface da VLAN 1 Padrão
 sw-01(config)# interface vlan 1
 ```
+---
 
-A) Configuração da Descrição da Interface Virtual VLAN-1.
+  - Configuração da Descrição da Interface Virtual VLAN-1.
 
-**DICA-05:** sempre utilizar o comando: *description* nas Interfaces para efeito de documentação.
+**DICA-05:** sempre utilizar o comando: **description** nas Interfaces para efeito de documentação.
 
-**OBSERVAÇÃO-05:** documentação de Interface facilita o processo de identificação e função dela na topologia de rede, configuração obrigatória em Switch ou Router.
+> **OBSERVAÇÃO-05:** documentação de Interface facilita o processo de **Identificação e Função** dela na topologia de rede, configuração obrigatória em Switch ou Router.
+
 ```bash
+!Configurando a Descrição da Interface de VLAN 1 do Switch Cisco
 sw-01(config-if)# description Interface de Gerenciamento do Switch SW-01
 ```
+---
 
-B) Configuração do Endereçamento IPv4 da Interface Virtual VLAN-1.
+  - Configuração do Endereçamento IPv4 da Interface Virtual VLAN-1.
 
-**DICA-06:** o endereço IPv4 deve ser da mesma faixa de Rede ou Sub-Rede do Gateway Padrão configurado no Switch na Segunda Etapa.
+**DICA-06:** o endereço IPv4 deve ser da __`Mesma Faixa de Rede ou Sub-Rede do Gateway Padrão`__ configurado no Switch na **Segunda Etapa**.
 
-**DICA-07:** é recomendado que os endereços de Rede ou Sub-Redes dos Switches sejam diferentes das Redes dos Desktops, Notebook, Wi-Fi (Wireless/Sem-Fio), CFTV (Circuito Fechado de TV), etc... para garantir a segurança de acesso aos equipamentos somente para a equipe/profissionais de TI que esteja nessa mesma Rede/Sub-Rede.
+**DICA-07:** é recomendado que os _-`Endereços de Rede ou Sub-Redes`__ dos Switches sejam diferentes das **Redes dos Desktops, Notebook, Wi-Fi (Wireless/Sem-Fio), CFTV (Circuito Fechado de TV), etc.** para garantir a segurança de acesso aos equipamentos somente para a __`Equipe/Profissionais de TI`__ que esteja nessa mesma Rede/Sub-Rede.
 
-**OBSERVAÇÃO-06:** configuração do endereço IPv4 deve ser: *IPv4 + Máscara de Rede Completa (ClassFull)*, não utilizar CIDR (Classes Inter-Domain Routing) nas configurações.
+> **OBSERVAÇÃO-06:** configuração do endereço IPv4 deve ser: **IPv4 + Máscara de Rede Completa (ClassFull)**, não utilizar __`CIDR (Classes Inter-Domain Routing)`__ nas configurações.
+
 ```bash
+!Configurando o Endereço IPv4 e Máscara de Rede da Interface VLAN 1 do Switch Cisco
 sw-01(config-if)# ip address 192.168.1.250 255.255.255.0
 ```
+---
 
-C) Inicializando a Interface Virtual da VLAN-1.
+  - Inicializando a Interface Virtual da VLAN-1.
 
-**DICA-08:** por padrão todas as Interfaces estão no status: *desligada (Shutdown)* no Switch ou Router.
+**DICA-07:** por padrão __`Todas as Interfaces de Rede`__ estão no status: **desligada (Shutdown)** no Switch ou Router.
 
-**DICA-09:** por padrão todas as Portas de Rede estão no status: *ligada (No-Shutdown)* no Switch.
+**DICA-08:** por padrão __`Todas as Portas de Rede`__ estão no status: **ligada (No-Shutdown)** no Switch.
 
-**OBSERVAÇÃO-07:** o comando: *no* também é utilizado para ligar as Interfaces tirando do status: *shutdown (Desligada)* e mudando o seu status para: *no shutdown (Ligada)*.
+> **OBSERVAÇÃO-07:** o comando: **no** também é utilizado para ligar as Interfaces tirando do status: **shutdown (Desligada)** e mudando o seu status para: **no shutdown (Ligada)**.
+
 ```bash
+!Inicializando a Interface VLAN 1 do Switch Cisco
 sw-01(config-if)# no shutdown
 ```
+---
 
-D) Saindo de todos os níveis e voltando para o modo EXEC Privilegiado.
+  - Saindo de todos os níveis e voltando para o modo EXEC Privilegiado.
 
-**DICA-10:** somente no modo EXEC Privilegiado você tem o comando: *copy* para salvar as configurações.
+**DICA-09:** somente no __`Modo EXEC Privilegiado`__ você tem o comando: **copy** ou **write** para salvar as configurações.
 
-**DICA-11:** existe também o comando: *do*, esse comando permite executar qualquer comando fora do seu nível padrão.
+**DICA-10:** existe também o comando: **do**, esse comando permite executar qualquer comando __`Fora do seu Nível Padrão`__.
 
-**EXEMPLO:** sw-01(config-line)# do copy running-config startup-config | sw-01(config-line)# do show running-config | sw-01(config-line)# do write
+**EXEMPLO:** __`sw-01(config-line)# do copy running-config startup-config | sw-01(config-line)# do show running-config | sw-01(config-line)# do write`__
+
 ```bash
+!Saindo de todos os níveis do Switch Cisco
 sw-01(config-if)# end
 sw-01#
 ```
+---
 
-E) Salvando as configurações da memória RAM (Running-Config) para a memória NVRAM (Startup-Config)
+  - Salvando as configurações da memória RAM (Running-Config) para a memória NVRAM (Startup-Config)
 
-**DICA-12:** nunca esqueça de salvar as configurações.
+**DICA-11:** nunca esqueça de salvar as configurações.
+
 ```bash
+!Salvando as configurações da RAM para NVRAM do Switch Cisco
 sw-01# copy running-config startup-config
   Destination filename [startup-config]? <Enter>
   Building configuration...
@@ -136,9 +139,10 @@ sw-01# copy running-config startup-config
 sw-01#
 ```
 
-09. Visualizando as configurações da memória RAM (Running-Config).
+  - Visualizando as configurações da memória RAM (Running-Config).
 
-**DICA-13** após a configuração da SVI verifique se tudo está configurado de forma correta utilizando os comandos: *show*.
+**DICA-12** após a configuração da SVI verifique se tudo está configurado de forma correta utilizando os comandos: **show**.
+
 ```bash
 !Visualizando as Configurações do Running-Config (RAM)
 sw-01# show running-config
@@ -151,6 +155,8 @@ sw-01# show running-config
   end
 sw-01#
 ```
+---
+
 ```bash
 !Fazendo um Filtro na Visualização do Running-Config somente da Interface Vlan1
 sw-01# show running-config | section include interface Vlan1
@@ -159,6 +165,8 @@ sw-01# show running-config | section include interface Vlan1
     ip address 192.168.1.250 255.255.255.0
 sw-01#
 ```
+---
+
 ```bash
 !Visualizando as configurações das interfaces e portas de rede do Switch
 sw-01# show ip interface brief
@@ -173,6 +181,8 @@ sw-01# show ip interface brief
   Vlan1                  192.168.1.250   YES manual up                    up
 sw-01#
 ```
+---
+
 ```bash
 !Visualizando as configurações das VLANs padrão do Switch
 sw-01# show vlan brief
@@ -191,16 +201,18 @@ sw-01# show vlan brief
   1005 trnet-default                    active
 sw-01#
 ```
+---
 
-F) Testando a conectividade entre o Switch e os Desktops da Rede
+  - Testando a conectividade entre o Switch e os Desktops da Rede
 
-**DICA-14** depois da configuração da SVI no Switch Cisco Catalyst Layer 2 você consegue agora pingar os Desktops da Rede utilizado o Protocolo ICMP (Internet Control Message Protocol) com o comando: *ping* para testar a interconectividade de rede.
+**DICA-13** depois da configuração do __`SVI no Switch Cisco Catalyst Layer 2`__ você consegue agora pingar os **Desktops da Rede** utilizado o Protocolo __`ICMP (Internet Control Message Protocol)`__ com o comando: **ping** para testar a interconectividade de rede.
 
-**OBSERVAÇÃO-08** o carácter: *! (exclamação)* utilizado no comando: ping significa que os pacotes ICMP enviado para o destino foi recebido com sucesso, o padrão é enviar: *5 Pacotes (Sending 5)* já o carácter: *. (ponto)* significa que os pacotes ICMP foram perdidos ou o destino não recebeu os pacotes.
+> **OBSERVAÇÃO-08** o carácter: **! (exclamação)** utilizado no comando: **ping** significa que os __`Pacotes ICMP Enviado para o Destino`__ foi recebido com **Sucesso**, o padrão é enviar: **5 Pacotes (Sending 5)** já o carácter: **. (ponto)** significa que os __`Pacotes ICMP foram Perdidos`__ ou o destino não recebeu os pacotes.
 
-**OBSERVAÇÃO-09** na última linha do comando: *ping* do Cisco IOS mostra a opção: **Success rate is 100 percent (5/5)** que representa que 100% dos pacotes foram enviado e recebidos totalizando: *5 (cinco) Pacotes Enviados e 5 (cinco) Pacotes Recebidos*, na opção: **round-trip** que é o tempo de vida de ida e volta dos pacotes (RTT - Round Trip Time) medido em milissegundos, Mínimo (min): 8 ms — O menor tempo registrado, Médio (avg): 10 ms — Média dos tempos e Máximo (max): 15 ms — O maior tempo registrado.
+> **OBSERVAÇÃO-09** na última linha do comando: **ping** do Cisco IOS mostra a opção: **Success rate is 100 percent (5/5)** que representa que: __`100% dos Pacotes foram Enviado e Recebidos totalizando: *5 (cinco) Pacotes Enviados e 5 (cinco) Pacotes Recebidos`__, na opção: **round-trip** que é o: __`Tempo de Vida de Ida e Volta dos Pacotes (RTT - Round Trip Time)`__ medido em **Milissegundos**, Mínimo (min): 8 ms — O menor tempo registrado, Médio (avg): 10 ms — Média dos tempos e Máximo (max): 15 ms — O maior tempo registrado.
 
-**DICA-15:** RTT é o tempo que um pacote leva para sair do dispositivo de origem, chegar ao destino e retornar. Esse tempo inclui: *Latência da Rede, Processamento dos dispositivos intermediários e Variações momentâneas (jitter).*
+**DICA-14:** RTT é o tempo que um pacote leva para __`Sair do Dispositivo de Origem, chegar ao Destino e Retornar`__. Esse tempo inclui: **Latência da Rede, Processamento dos dispositivos intermediários e Variações momentâneas (jitter).**
+
 ```bash
 !Pingando a SVI do Switch Layer 2 2960 sw-01
 sw-01# ping 192.168.1.250
@@ -210,6 +222,8 @@ sw-01# ping 192.168.1.250
   Success rate is 100 percent (5/5), round-trip min/avg/max = 8/10/15 ms
 sw-01#
 ```
+---
+
 ```bash
 !Pingando o endereço IPv4 do Servidor
 sw-01# ping 192.168.1.1
@@ -219,29 +233,31 @@ sw-01# ping 192.168.1.1
   Success rate is 80 percent (4/5), round-trip min/avg/max = 0/0/0 ms
 sw-01#
 ```
+---
 
 ## QUARTA ETAPA: Automatizando a Configuração do Segundo Switch Cisco Catalyst 2960.
 
 01. Utilizando o Visual Studio Code (VSCode) para automatizar as configurações do Cisco IOS.
 
-**OBSERVAÇÃO-10:** recomendo sempre utilizar um *Editor de Texto Profissional* para criar os scripts e automatizar as tarefas de configuração do Cisco IOS, hoje em dia é indicado utilizar o Visual Studio Code (VSCode) junto com as Extensões: *Cisco IOS Syntax e Cisco Config Highlight* para facilitar essa configuração.
+> **OBSERVAÇÃO-10:** recomendo sempre utilizar um __`Editor de Texto Profissional`__ para criar os scripts e automatizar as tarefas de configuração do Cisco IOS, hoje em dia é indicado utilizar o Visual Studio Code (VSCode) junto com as Extensões: **Cisco IOS Syntax e Cisco Config Highlight** para facilitar essa configuração.
 
-**DICA-16:** o caractere: *! (exclamação)* é utilizado como um recurso de *Comentário*, sua utilização server para comentar o código de automação do Cisco IOS ou para desativar um comando para não ser executado, *RECOMENDO FORTEMENTE DOCUMENTAR TODOS OS COMANDOS E PROCEDIMENTOS DE CONFIGURAÇÃO PARA FACILITAR O ENTENDIMENTO.*
+**DICA-15:** o caractere: *! (exclamação)* é utilizado como um recurso de *Comentário*, sua utilização server para comentar o código de automação do Cisco IOS ou para desativar um comando para não ser executado, *RECOMENDO FORTEMENTE DOCUMENTAR TODOS OS COMANDOS E PROCEDIMENTOS DE CONFIGURAÇÃO PARA FACILITAR O ENTENDIMENTO.*
 
-**DICA-17:** para facilitar a leitura do código, recomendo utilizar o recurso de **Indentação de Código** usando a Tecla TAB (Tabulador/Tabulação) para cada nível que você está configurando o Cisco IOS, isso facilitada a análise de erros (Debug) do código.
+**DICA-16:** para facilitar a leitura do código, recomendo utilizar o recurso de **Indentação de Código** usando a Tecla TAB (Tabulador/Tabulação) para cada nível que você está configurando o Cisco IOS, isso facilitada a análise de erros (Debug) do código.
 
-01. Acessando o modo EXEC Privilegiado e o modo de Configuração Global de Comandos.
+  - Acessando o modo EXEC Privilegiado e o modo de Configuração Global de Comandos.
 ```bash
 AVISO: acesso autorizado somente a funcionarios
 User Access Verification
 Username: SEU_USUÁRIO
-Password: SUA_SENHA
+Password: SUA_SENHA_SEGURA
 
 sw-02> enable
 Password: SUA_SENHA_SEGURA
 
 sw-02#
 ```
+---
 
 ```python
 !Acessando o modo de Configuração Global de comandos
