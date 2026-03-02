@@ -52,17 +52,23 @@ Switch>
 !Verificando a ajuda básica dos comandos no Cisco IOS
 Switch> show ?
 Switch> enable
-Switch# copy ?
-Switch# disable ?
-Switch# clock ?
-
-!Verificando a ajuda básica no modo de configuração global no Cisco IOS
-Switch(config)# service ?
 
 !Verificando a ambiguidade de comandos no Cisco IOS
 Switch# c?
 clear  clock  configure  connect  copy 
+
+!Verificando a ajuda básica dos comandos após resolver a ambiguidade no Cisco IOS
+Switch# copy ?
+Switch# clock ?
+
+!Verificando a ajuda básica no modo de configuração global no Cisco IOS
+Switch# configure terminal
+Switch(config)# service ?
+Switch(config)# end
+Switch# disable
+Switch>
 ```
+---
 
 **DICA-03** se você está estudando para a __`Certificação Cisco CCNAv7`__, é recomendado digitar os comandos **Completos**, utilize comandos abreviados somente quando você **já domina o Cisco IOS**.
 
